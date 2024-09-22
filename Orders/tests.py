@@ -27,3 +27,10 @@ class OrderModelTest(TestCase):
         self.order.calculate_total()
         expected_total = Decimal('50.00')
         self.assertEqual(self.order.total_amount, expected_total)
+        
+    def test_signal_triggers_calculate_total(self):
+        order = Order.objects.create(user=self.user, status='Pending')
+        OrderItem.objects.create(order=order, product=self.product, quantity=2, price=25)
+        order.refresh_from_db()  # 重新加載訂單實例
+        expected_total = Decimal('50.00')
+        self.assertEqual(order.total_amount, expected_total)
