@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group, Permission
+from django.core.exceptions import ValidationError
+
 
 class CustomUserModelTest(TestCase):
 
@@ -49,7 +51,8 @@ class CustomUserModelTest(TestCase):
         self.user.gender = 'F'
         self.user.save()
         self.assertEqual(self.user.gender, 'F')
-        with self.assertRaises(ValueError):
+        
+        with self.assertRaises(ValidationError):
             self.user.gender = 'X'  
             self.user.full_clean() 
 
