@@ -6,6 +6,6 @@ class Shop(models.Model):
     address = models.CharField(max_length=255)
     contact_email = models.EmailField()
     contact_phone = models.CharField(max_length=20)
-
+    popularity = models.IntegerField(default=0)
     def __str__(self):
         return self.name
