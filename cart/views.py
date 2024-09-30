@@ -1,20 +1,11 @@
-from rest_framework import generics, permissions
+from rest_framework import viewsets
 from .models import cart
 from .serializers import CartSerializer
+from rest_framework.permissions import IsAuthenticated
 
-class CartListCreateView(generics.ListCreateAPIView):
+
+class CartViewSet(viewsets.ModelViewSet):
+    queryset = cart.objects.all()
     serializer_class = CartSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        return cart.objects.filter(user=self.request.user)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-class CartRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = CartSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        return cart.objects.filter(user=self.request.user)
+    permission_classes = [IsAuthenticated]
+    

@@ -1,7 +1,10 @@
-from django.urls import path
-from .views import CartListCreateView, CartRetrieveUpdateDestroyView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import CartViewSet
+
+router = DefaultRouter()
+router.register(r'', CartViewSet)
 
 urlpatterns = [
-    path('', CartListCreateView.as_view(), name='cart-list-create'),
-    path('<int:pk>/', CartRetrieveUpdateDestroyView.as_view(), name='cart-detail'),
+    path('', include(router.urls)),
 ]
