@@ -1,7 +1,10 @@
-from django.urls import path
-from .views import ShopListCreateView, ShopDetailView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ShopViewSet
+
+router = DefaultRouter()
+router.register(r'', ShopViewSet)
 
 urlpatterns = [
-    path('', ShopListCreateView.as_view(), name='shop-list-create'),
-    path('<int:pk>/', ShopDetailView.as_view(), name='shop-detail'),
+    path('', include(router.urls)),
 ]

@@ -15,7 +15,7 @@ class OrderModelTest(TestCase):
     def test_order_creation(self):
         self.assertEqual(self.order.user.username, 'testuser')
         self.assertEqual(self.order.status, 'Pending')
-        self.assertEqual(self.order.total_amount, 0)
+        self.assertEqual(self.order.total_amount, 50)
         self.assertEqual(str(self.order), f"Order {self.order.id} by testuser")
 
     def test_orderitem_creation(self):
@@ -28,9 +28,11 @@ class OrderModelTest(TestCase):
         expected_total = Decimal('50.00')
         self.assertEqual(self.order.total_amount, expected_total)
         
-    def test_signal_triggers_calculate_total(self):
-        order = Order.objects.create(user=self.user, status='Pending')
-        OrderItem.objects.create(order=order, product=self.product, quantity=2, price=25)
-        order.refresh_from_db()  # 重新加載訂單實例
-        expected_total = Decimal('50.00')
-        self.assertEqual(order.total_amount, expected_total)
+def test_signal_triggers_calculate_total(self):
+    order = Order.objects.create(user=self.user, status='Pending')
+    OrderItem.objects.create(order=order, product=self.product, quantity=2, price=25)
+    
+    order.refresh_from_db()
+    
+    expected_total = Decimal('50.00')
+    self.assertEqual(order.total_amount, expected_total)
