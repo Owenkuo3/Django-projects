@@ -30,7 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [  
+    'drf_yasg',
     "cart",
     "rest_framework",
     "Users",
@@ -91,6 +92,7 @@ DATABASES = {
     'mongodb': {
         'ENGINE': 'djongo',
         'NAME': 'ecommerce',
+        'ENFORCE_SCHEMA': False,
         'HOST': 'localhost',
         'PORT': 27017,
     }

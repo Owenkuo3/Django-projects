@@ -12,3 +12,13 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class ProductReview(models.Model):
+    user_id = models.CharField(max_length=255)
+    product_id = models.CharField(max_length=255)
+    review_content = models.TextField()
+    rating = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Review by {self.user_id} on {self.product_id}'
