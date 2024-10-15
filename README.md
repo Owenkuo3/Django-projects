@@ -22,3 +22,5 @@ Redis:
 開發關於MongoDB資料庫部分(用戶行為、商品評論等等)
 建立商品評論Model, API
 Model儲存在users APP
+
+CI/CD建置
