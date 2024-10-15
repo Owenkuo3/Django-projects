@@ -18,3 +18,7 @@ Redis:
 設置好全域的api urls 
 創建cart / shop的views (設置API)
 透過Django REST framework 設置各app的serializer跟視圖、url等等
+
+開發關於MongoDB資料庫部分(用戶行為、商品評論等等)
+建立商品評論Model, API
+Model儲存在users APP
