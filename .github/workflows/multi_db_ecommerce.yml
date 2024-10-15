@@ -2,11 +2,11 @@ name: multi_db_ecommerce CI/CD
 
 on:
   push:
-    paths:
-      - 'multi_db_ecommerce/**'
+    branches:
+      - multi_db_ecommerce
   pull_request:
-    paths:
-      - 'multi_db_ecommerce/**'
+    branches:
+      - multi_db_ecommerce
 
 jobs:
   test:
