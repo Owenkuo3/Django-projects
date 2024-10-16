@@ -24,7 +24,6 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd multi_db_ecommerce
         pip install -r requirements.txt
   
     - name: Run tests
